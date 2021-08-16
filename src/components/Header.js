@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types'; // impt
+import { useLocation } from 'react-router-dom' ;
 import Button from './Button';
 
 const Header = ({ title, onAdd, showAdd }) => { 
-
+    // About 눌렀을 때 버튼이 있는게 말이 안되므로
+    const location = useLocation();
+    
     return (
         <header className='header'>
             <h1>{title}</h1>
             {
-                <Button 
-                    color={showAdd? 'red':'green'}
-                    text={showAdd? 'Close':'Add'} 
-                    onClick={onAdd} 
-                />
+                location.pathname === '/' &&
+                    (<Button 
+                        color={showAdd? 'red':'green'}
+                        text={showAdd? 'Close':'Add'} 
+                        onClick={onAdd} 
+                    />)
             }
         </header>
     )
